@@ -35,10 +35,20 @@ def read_input(file):
     instuctions = lines[lines.index("")+1:]
     return stacks, instuctions
 
-def perfom_move_on_stack(amount, origin, target, stack):
+def crateMover_9000(amount, origin, target, stack):
     for i in range(0, amount):
         stack[target].append(stack[origin].pop())
 
+    return stack
+
+def crateMover_9001(amount, origin, target, stack):
+    items = []
+    for i in range(0, amount):
+        items.append(stack[origin].pop())
+    items.reverse()
+    for i in items:
+        stack[target].append(i)
+    
     return stack
 
 def get_top_of_stacks_string(stacks):
@@ -54,7 +64,7 @@ stacks = read_stacks(stacks)
 moves_array = read_moves(instructions)
 
 for i in moves_array:
-    stacks = perfom_move_on_stack(i[0], i[1]-1, i[2]-1, stacks)
+    stacks = crateMover_9001(i[0], i[1]-1, i[2]-1, stacks)
 
 
 print(get_top_of_stacks_string(stacks))
